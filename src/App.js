@@ -23,13 +23,24 @@ function App() {
         <option value={""} selected disabled>Choose Yout Calculation Type</option>
         <option value={"tip_per"}>Tip in Percentage</option>
         <option value={"tip_flat"}>Tip in Flat Amount</option>
-        <option value={"change"}>Just Change</option>
+        <option value={"change"}>Calculation From Change</option>
       </select>
 
-      <h3>Service Amount:</h3>
-      <input type={'number'} onChange={handleService}/>
-      <h4>{Service_amount !== '' ? `$${Service_amount}` : ""}</h4>
-      <CalcType calc={choice} service={Service_amount}/>
+      <h2>
+        {(choice !== "") ?
+          <div>
+            <h3>Service Amount:</h3>
+            <input type={'number'} onChange={handleService}/>
+            <h4>{Service_amount !== '' ? `$${Service_amount}` : ""}</h4>
+            <CalcType calc={choice} service={Service_amount}/>
+          </div>
+        :
+
+        ""
+      
+      }
+      </h2>
+
 
     </div>
   )
