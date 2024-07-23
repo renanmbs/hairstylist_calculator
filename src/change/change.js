@@ -4,19 +4,19 @@ import { TipCalcChange } from "./tip_on_change";
 
 export const Change = (props) => {
     const [paid, setPaid] = useState(0);
-    const [ShowTip, setShowTip] = useState(false);
+    const [ShowTip, setShowTip] = useState(0);
 
     let onChange = ({target}) => {
         setPaid(target.value);
     }
 
-    let  onChecked = ({target}) =>{
-        if(target.checked){
-            setShowTip(true);
+    let onClicked = () =>{
+        if(ShowTip === 0){
+            setShowTip(1);
         }
 
         else{
-            setShowTip(false);
+            setShowTip(0);
         }
     }
 
@@ -38,13 +38,12 @@ export const Change = (props) => {
                 
             </h4>
             
-            {/* CHOOSE THE APPROPRIATE EVENT LISTENER FOR ON CHANGE TO SHOW TIP CALC 'ADD TIP' */}
-            <input type="checkbox" onChange={onChecked}/>
+            <button onClick={onClicked}>Add Tip</button>
 
             <div>
-                {(ShowTip === true) ?
+                {(ShowTip === 1) ?
 
-                    <TipCalcChange  />
+                    <TipCalcChange  service={props.service} paid={paid}/>
 
                     :
 

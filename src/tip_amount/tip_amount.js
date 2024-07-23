@@ -16,7 +16,7 @@ export class TipAmount extends React.Component{
 
     render(){
 
-        let total = (parseFloat(this.state.tip) + parseFloat(this.props.service)  * 100) / 100;
+        let total = parseFloat(this.state.tip) + parseFloat(this.props.service);
         let percentage = (parseFloat(this.state.tip) / parseFloat(this.props.service)) * 100 ;
         let change = parseFloat(this.state.paid) - parseFloat(total);
         return(
