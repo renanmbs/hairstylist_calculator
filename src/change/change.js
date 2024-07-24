@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { TipCalcChange } from "./tip_on_change";
+import "./change.css";
 
 export const Change = (props) => {
     const [paid, setPaid] = useState(0);

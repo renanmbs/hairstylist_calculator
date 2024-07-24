@@ -15,33 +15,41 @@ function App() {
   }
 
   return(
-    <div>
-      <h2>Welcome to,</h2>
-      <h1>The Hairstylist Calculator</h1>
+    <div id='back'>
 
-      <select onChange={handleChange}>
-        <option value={""} selected disabled>Choose Yout Calculation Type</option>
-        <option value={"tip_per"}>Tip in Percentage</option>
-        <option value={"tip_flat"}>Tip in Flat Amount</option>
-        <option value={"change"}>Calculation From Change</option>
-      </select>
+      <div id='menu'>
 
-      <h2>
+        <div id='banner'>
+          <h2>Welcome to,</h2>
+          <h1>The Hairstylist Calculator</h1>
+  
+          <select onChange={handleChange} id='serv_choice'>
+            <option value={""} selected disabled>Choose Yout Calculation Type</option>
+            <option value={"tip_per"}>Tip in Percentage</option>
+            <option value={"tip_flat"}>Tip in Flat Amount</option>
+            <option value={"change"}>Calculation From Change</option>
+            <option value={"com"}>Commission Calculation</option>
+          </select>
+
+        </div>
+
         {(choice !== "") ?
-          <div>
-            <h3>Service Amount:</h3>
-            <input type={'number'} onChange={handleService}/>
-            <h4>{Service_amount !== '' ? `$${Service_amount}` : ""}</h4>
-            <CalcType calc={choice} service={Service_amount}/>
-          </div>
-        :
 
-        ""
-      
-      }
-      </h2>
+            <div id='serv_amount'>
 
+              <h3>Service Amount:</h3>
+              <input type={'number'} onChange={handleService}/>
 
+              <CalcType calc={choice} service={Service_amount}/>
+
+            </div>
+          :
+
+          ""
+        
+        }
+
+      </div>
     </div>
   )
 }

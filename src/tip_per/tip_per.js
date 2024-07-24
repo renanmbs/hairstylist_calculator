@@ -1,4 +1,5 @@
 import React from "react";
+import "./tip_per.css"
 
 export class TipPer extends React.Component{
     constructor(props){
@@ -28,21 +29,23 @@ export class TipPer extends React.Component{
                 <h3>Paid Amount</h3>
                 <input type="number" onChange={this.onPaidChange}/>
 
-                <div>
-                    <h4>Tip Percentage: {this.state.per !== 0 ? `${this.state.per}%` : ""}</h4>
-                    <hr/>
+                <div id="results_per">
 
-                    <h4>Tip Amount: {tip_amount !== 0 ? `$${tip_amount.toFixed(2)}` : ""}</h4>
-                    <hr/>
+                    <h4>Service Price: <span>{(this.props.service !== 0 && !isNaN(this.props.service)) ? `$${parseFloat(this.props.service).toFixed(2)}` : ""}</span></h4>
+                    <h4>Tip Percentage: <span>{(this.state.per !== 0 && !isNaN(this.state.per)) ? `${this.state.per}%` : ""}</span></h4>
 
-                    <h4>Total Amount: {total_amount !== 0 ? `$${total_amount.toFixed(2)}` : ""}</h4>
-                    <hr/>
+                    <h4>Tip Amount: <span>{(tip_amount !== 0 && !isNaN(tip_amount)) ? `$${tip_amount.toFixed(2)}` : ""}</span></h4>
 
-                    <h4>Amount Paid: {this.state.paid !== 0 ? `$${this.state.paid}` : ""}</h4>
-                    <hr/>
+                    <h4>Total Amount: <span>{(total_amount !== 0 && !isNaN(total_amount))? `$${total_amount.toFixed(2)}` : ""}</span></h4>
+
+                    <h4>Amount Paid: <span>{(this.state.paid !== 0 && !isNaN(this.state.paid)) ? `$${parseFloat(this.state.paid).toFixed(2)}` : ""}</span></h4>
                     
-                    <h4>{(change > 0) ? 
-                        `Change: $${change.toFixed(2)}` : `Still Owe: $${Math.abs(change).toFixed(2)}`}
+                    <h4>{(change > 0 && !isNaN(change)) ? 
+                        `Change: ` : (!isNaN(change) ? `Still Owe: ` : "")}
+                    </h4>
+
+                    <h4><span>{(change > 0 && !isNaN(change)) ? 
+                        `$${change.toFixed(2)}` : (!isNaN(change) ? `$${Math.abs(change).toFixed(2)}` : "")}</span>
                     </h4>
                 </div>
             </div>

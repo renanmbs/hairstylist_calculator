@@ -3,6 +3,7 @@ import "./calc.css";
 import { TipPer } from "../tip_per/tip_per";
 import { TipAmount } from "../tip_amount/tip_amount";
 import { Change } from "../change/change";
+import { CommissionCalculation } from "../commission/com";
 
 export class CalcType extends React.Component{
 
@@ -16,6 +17,9 @@ export class CalcType extends React.Component{
             
             case "tip_flat":
                 return <TipAmount service={this.props.service}/>
+
+            case "com":
+                return <CommissionCalculation service={this.props.service}/>
 
             default:
                 return <></>
