@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import "./change.css";
 
 export const TipCalcChange = (props) => {
     const [tipType, setTipType] = useState('');
@@ -10,16 +11,18 @@ export const TipCalcChange = (props) => {
 
     return(
         <div>
-            <label>
-                <input type="radio" name="tip_choice" value={"per"} onChange={handleChange}/>
-                Tip In Percentage
-            </label>
+            <div id="buttons">
+                <label className="rad1">
+                    Tip In %<br/>
+                    <input type="radio" name="tip_choice" value={"per"} onChange={handleChange}/>
+                    
+                </label>
 
-            <label>
-                <input type="radio" name="tip_choice" value={"flat"} onChange={handleChange}/>
-                Tip In Flat Amount
-            </label>
-
+                <label className="rad2">
+                    Tip In $<br/>
+                    <input type="radio" name="tip_choice" value={"flat"} onChange={handleChange}/>
+                </label>
+            </div>
             <Calculation type={tipType} service={props.service} paid={props.paid}/>
         </div>
     )
@@ -35,7 +38,7 @@ export const Calculation = (props) => {
     if(props.type === 'per'){
         return(
             <div>
-                <h4>Tip Percentage</h4>
+                <h3>Tip Percentage</h3>
                 <input type="number" onChange={onChange}/>
                 <TipCalculation type={props.type} service={props.service} tip={tip} paid={props.paid}/>
             </div>
@@ -45,7 +48,7 @@ export const Calculation = (props) => {
     else if(props.type === 'flat'){
         return(
             <div>
-                <h4>Tip Amount</h4>
+                <h3>Tip Amount</h3>
                 <input type="number" onChange={onChange}/>
                 <TipCalculation type={props.type} service={props.service} tip={tip} paid={props.paid}/>
             </div>
@@ -96,10 +99,18 @@ export const TipCalculation = (props) => {
 
     return (
         <div >
-            <h4>Tip Total: {Tip_total}</h4>
-            <h4>Total: {final}</h4>
-            <h4>Paid: {props.paid}</h4>
-            <h4>Change: {change}</h4>
+            <h4>Tip Total<sup style={{fontSize:"small"}}>*</sup>: <span>{(Tip_total !== 0 && !isNaN(Tip_total)) ? `$${parseFloat(Tip_total).toFixed(2)}`: ""}</span></h4>
+            <h4>Total: <span>{(final !== 0 && !isNaN(final)) ? `$${final}`: ""}</span></h4>
+            <h4>Paid: <span>{(props.paid !== 0 && !isNaN(props.paid)) ? `$${(parseFloat(props.paid).toFixed(2))}`: ""}</span></h4>
+            <h4>{(change > 0 && !isNaN(change)) ? 
+                        `Change: ` : (!isNaN(change) ? `Still Owed: ` : "")}
+                    </h4>
+
+                    <h4><span>{(change > 0 && !isNaN(change)) ? 
+                        `$${parseFloat(change).toFixed(2)}` : (!isNaN(change) ? `$${Math.abs(parseFloat((change)).toFixed(2))}` : "")}</span>
+                    </h4>
+
+                    <p style={{fontSize:"small"}}><sup>*</sup>Based on Tip Percentage</p>
         </div>
     )
 }

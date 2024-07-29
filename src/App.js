@@ -24,7 +24,7 @@ function App() {
           <h1>The Hairstylist Calculator</h1>
   
           <select onChange={handleChange} id='serv_choice'>
-            <option value={""} selected disabled>Choose Yout Calculation Type</option>
+            <option value={""} selected disabled>Choose Your Calculation Type</option>
             <option value={"tip_per"}>Tip in Percentage</option>
             <option value={"tip_flat"}>Tip in Flat Amount</option>
             <option value={"change"}>Calculation From Change</option>
@@ -37,7 +37,7 @@ function App() {
 
             <div id='serv_amount'>
 
-              <h3>Service Amount:</h3>
+              <h3>Service Price</h3>
               <input type={'number'} onChange={handleService}/>
 
               <CalcType calc={choice} service={Service_amount}/>

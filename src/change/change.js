@@ -24,22 +24,30 @@ export const Change = (props) => {
     let change_calc =  parseFloat(paid) - parseFloat(props.service);
 
     return (
-        <div>
+        <div className="results_per">
 
             <h3>Paid Amount</h3>
             <input type="number" onChange={onChange} />
 
-            <h4>Service: ${props.service}</h4>
-            <h4>
-                {
-                    (change_calc > 0) ? `Change: $${change_calc.toFixed(2)}`
-
-                    : `Still Owe: $${Math.abs(change_calc.toFixed(2))}`
-                }
-                
-            </h4>
+            <h4>Service Price: <span>{(props.service !== 0 && !isNaN(props.service)) ? `$${parseFloat(props.service).toFixed(2)}` : ""}</span></h4>
             
-            <button onClick={onClicked}>Add Tip</button>
+            <div>{ (ShowTip !== 1) ?
+                    <div>
+                        <h4>{(change_calc > 0 && !isNaN(change_calc)) ? 
+                                    `Change: ` : (!isNaN(change_calc) ? `Still Owed: ` : "")}
+                        </h4>
+                        <h4><span>{(change_calc > 0 && !isNaN(change_calc)) ? 
+                                    `$${change_calc.toFixed(2)}` : (!isNaN(change_calc) ? `$${Math.abs(change_calc).toFixed(2)}` : "")}</span>
+                        </h4>
+                    </div>
+
+                    : 
+
+                    <></>
+                }
+            </div>
+            
+            <button onClick={onClicked} className="add_tip">Add Tip</button>
 
             <div>
                 {(ShowTip === 1) ?
